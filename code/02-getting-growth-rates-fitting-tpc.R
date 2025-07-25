@@ -81,6 +81,8 @@ gdat <- allrfu %>%
 sumgdat <- gdat %>% summarise(unique_well, treatment, mu=grs$best.slope,best.model=grs$best.model,
                               best.se=grs$best.se)
 View(sumgdat)
+write_csv(sumgdat, "data/growthtool-gdat-sum.csv")
+#Note: these actual gr are different from thesis-su repo (look in 02-growth-sat-joey, line 37, 95)
 
 gdat42 <- sumgdat %>% 
   filter(grepl("42", unique_well)) %>% 

@@ -1,5 +1,5 @@
 #Sveta Uzhova
-#growth rates at 14 deg and at 30 deg
+#PREDS growth rates at 14 deg and at 30 deg
 
 # packages ----------------------------------------------------------------
 library(ggpubr)
