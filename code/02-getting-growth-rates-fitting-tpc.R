@@ -69,27 +69,34 @@ for (i in seq_along(unique_well_list)) {
 # Return the final output after the loop completes
 output
 
-#write_csv(output, "data/output-no42.csv")
+write_csv(output, "data/output-no42.csv")
 output_no42 <- read.csv("data/output-no42.csv")
 
 # growth rate at 42 deg ---------------------------------------------------
-gdat <- allrfu %>% 
-  group_by(unique_well, treatment) %>% 
+#Hashtaging this section out and using gdat with get gr sat from 02-growth-sat-joey, line 37, 95 to try to fix the issue with differnt p values in stat comparisons
+gdat <- allrfu %>%
+  group_by(unique_well, treatment) %>%
   do(grs=get.growth.rate(x=.$days,y=.$log_rfu,
-                         id=.$unique_well,plot.best.Q=F))  
+                         id=.$unique_well,plot.best.Q=F))
 
 sumgdat <- gdat %>% summarise(unique_well, treatment, mu=grs$best.slope,best.model=grs$best.model,
                               best.se=grs$best.se)
 View(sumgdat)
-write_csv(sumgdat, "data/growthtool-gdat-sum.csv")
+# write_csv(sumgdat, "data/growthtool-gdat-sum.csv")
 #Note: these actual gr are different from thesis-su repo (look in 02-growth-sat-joey, line 37, 95)
-
-gdat42 <- sumgdat %>% 
-  filter(grepl("42", unique_well)) %>% 
-  filter(treatment != "blank_blank")
+# 
+# gdat42 <- sumgdat %>% 
+#   filter(grepl("42", unique_well)) %>% 
+#   filter(treatment != "blank_blank")
 
 #write_csv(gdat42, "data/gdat42.csv")
-output_only42 <- read.csv("data/gdat42.csv")
+# output_only42 <- read.csv("data/gdat42.csv")
+
+#02-growth-sat-joey, line 48
+
+#line 91
+sumgdat <- gdat %>% summarise(unique_well, treatment, mu=grs$best.slope,best.model=grs$best.model,
+                              best.se=grs$best.se)
 
 # combining growth rates at all temps -------------------------------------
 col_no42 <- data.frame(allrfu_no42$unique_well, allrfu_no42$treatment) %>% 

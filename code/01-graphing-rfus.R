@@ -1,6 +1,9 @@
 #Sveta Uzhova
 #graphing RFU reads
 
+#input: raw rfu files data/raw_rfus folder
+#output: all rfu files data/tpc_processed_all_rfus.csv
+
 #packages-----------------------------------------------------------------------
 library(readxl)
 library(tidyverse)
@@ -11,7 +14,7 @@ library(lubridate)
 library(cellranger)
 library(purrr)
 library(fs)
-library(here)
+#library(here)
 library(dplyr)
 library(stringr)
 
